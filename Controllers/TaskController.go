@@ -22,3 +22,18 @@ func CreateTask(db *gorm.DB)gin.HandlerFunc{
 	}
 
 }
+
+func GetTasks(db *gorm.DB)gin.HandlerFunc{
+
+	return func(c *gin.Context){
+		var Tasks []models.Task
+		result := db.Find(&Tasks)
+
+		if result.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"Error retrieving Tasks": result.Error})
+			return
+		}
+		c.JSON(http.StatusOK, Tasks)
+	}
+
+}
