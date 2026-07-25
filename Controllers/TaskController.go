@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"fmt"
+	"net/http"
 
+	models "github.com/AvalosRuben/ToDo/Models"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -10,7 +11,14 @@ import (
 func CreateTask(db *gorm.DB)gin.HandlerFunc{
 
 	return func(c *gin.Context){
-		fmt.Println("CREATE TASK!!!")
+		var newTask models.Task
+		if err := c.BindJSON(&newTask); err != nil{
+			c.JSON(http.StatusBadRequest, gin.H{"error":err.Error()})
+			return 
+		}
+
+		db.Create(&newTask)
+		c.JSON(http.StatusCreated, gin.H{"message":"Task created successfully!"})
 	}
 
 }
