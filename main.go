@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	models "github.com/AvalosRuben/ToDo/Models"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
@@ -47,6 +48,8 @@ func main() {
 	}
 
 	fmt.Println("Database connected :p")
+
+	db.AutoMigrate(&models.Task{})
 
 	r.Run()
 }
