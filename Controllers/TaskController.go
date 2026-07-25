@@ -37,3 +37,10 @@ func GetTasks(db *gorm.DB)gin.HandlerFunc{
 	}
 
 }
+
+func ToggleDone(db *gorm.DB)gin.HandlerFunc{
+
+	return func(c *gin.Context){
+		
+	}
+}
