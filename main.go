@@ -6,6 +6,7 @@ import (
 	"os"
 
 	models "github.com/AvalosRuben/ToDo/Models"
+	"github.com/AvalosRuben/ToDo/routes"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
@@ -48,6 +49,7 @@ func main() {
 	}
 
 	fmt.Println("Database connected :p")
+	routes.SetupRoutes(r, db)
 
 	db.AutoMigrate(&models.Task{})
 
