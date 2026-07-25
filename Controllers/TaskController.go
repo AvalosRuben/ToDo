@@ -59,3 +59,21 @@ func ToggleDone(db *gorm.DB)gin.HandlerFunc{
 		c.JSON(http.StatusOK, task)
 	}
 }
+
+func DeleteTask(db *gorm.DB)gin.HandlerFunc{
+	return func(c *gin.Context){
+		id := c.Param("id")
+		var task models.Task
+		if err := db.First(&task, id).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error":"Task not found!"})
+			return
+		}
+
+		if err := db.Delete(&task).Error; err != nil{
+			c.JSON(http.StatusInternalServerError, gin.H{"error":"Failed to delete task"})
+			return 
+		}
+
+		c.JSON(http.StatusOK, "Task deleted succesfully!")
+	}
+}
