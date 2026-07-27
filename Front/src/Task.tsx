@@ -39,6 +39,12 @@ function Task({ name, description, done, id, onToggle }: TaskProps) {
         >
           ✓
         </button>
+        <button
+          className="px-2 rounded-lg border border-slate-500 hover:bg-slate-500"
+          onClick={() => console.log("Delete!")}
+        >
+          Del
+        </button>
       </div>
     </div>
   );
