@@ -113,6 +113,8 @@ function App() {
                 description={t.description}
                 key={t.id}
                 done={t.done}
+                id={t.id}
+                onToggle={fetchTasks}
               />
             ))}
           </div>
