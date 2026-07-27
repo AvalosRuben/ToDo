@@ -34,6 +34,9 @@ function App() {
         {loading && (
           <p className="text-6xl text-slate-600 font-bold">Loading...</p>
         )}
+        {error && (
+          <p className="text-6xl text-pink-500 font-bold">ERROR: {error}</p>
+        )}
         {tasks?.length === 0 ? (
           <p>No task found :c</p>
         ) : (
