@@ -39,6 +39,35 @@ function App() {
     fetchTasks();
   }, []);
 
+  const HandlePostTask = async () => {
+    const payload = {
+      name: name,
+      description: description,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/create-task", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create task");
+      }
+
+      const newTask = await response.json();
+      console.log("Created task: ", newTask);
+
+      setName("");
+      setDescription("");
+    } catch (error) {
+      console.log("Error creating task: ", error);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center w-full min-h-screen bg-slate-300">
       <div className="flex flex-col gap-10 justify-center h-screen py-20 w-1/2 items-center">
@@ -46,9 +75,7 @@ function App() {
         <div className="flex w-full gap-3 items-center">
           <button
             className="text-2xl font-semibold text-slate-600 bg-slate-400 w-full p-4 rounded-2xl hover:bg-slate-500"
-            onClick={() => {
-              console.log(name, description);
-            }}
+            onClick={HandlePostTask}
           >
             Add Task
           </button>
