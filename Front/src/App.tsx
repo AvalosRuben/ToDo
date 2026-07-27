@@ -108,7 +108,14 @@ function App() {
         ) : (
           <div className="h-full w-full flex flex-col items-center gap-5 max-h-300 min-h-150 overflow-auto scrollbar-thin">
             {tasks?.map((t) => (
-              <Task name={t.name} description={t.description} />
+              <Task
+                name={t.name}
+                description={t.description}
+                key={t.id}
+                done={t.done}
+                id={t.id}
+                onToggle={fetchTasks}
+              />
             ))}
           </div>
         )}
