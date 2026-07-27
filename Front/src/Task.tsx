@@ -1,9 +1,6 @@
-interface TaskProps {
-  taskName: string;
-  description: string;
-}
+import type { Tasks } from "./Task";
 
-function Task({ taskName, description }: TaskProps) {
+function Task({ taskName, description }: Tasks) {
   return (
     <div className="w-full h-30 rounded-2xl border border-slate-500 bg-slate-400 p-4 flex flex-col gap-4 justify-center text-lg text-slate-200 font-bold">
       <p>Task: {taskName}</p>
