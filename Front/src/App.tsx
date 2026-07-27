@@ -6,9 +6,9 @@ function App() {
       <div className="flex flex-col gap-10 justify-center h-screen py-20 w-1/2 items-center">
         <h1 className="text-5xl font-bold text-slate-600">To Do List</h1>
         <div className="h-full w-full flex flex-col items-center gap-5">
-          <Task />
-          <Task />
-          <Task />
+          <Task taskName="Task name 1" description="description 1" />
+          <Task taskName="Task name 2" description="description 2" />
+          <Task taskName="Task name 3" description="description 3" />
         </div>
       </div>
     </div>
