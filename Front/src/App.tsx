@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import Task from "./Task";
 import type { Tasks } from "./Tasks";
 
@@ -6,6 +6,17 @@ function App() {
   const [tasks, setTasks] = useState<Tasks[]>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+
+  const HandleChangeDescription = (e: ChangeEvent<HTMLInputElement>) => {
+    setDescription(e.target.value);
+  };
+
+  const HandleNameDescription = (e: ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -27,18 +38,37 @@ function App() {
 
     fetchTasks();
   }, []);
+
   return (
     <div className="flex items-center justify-center w-full min-h-screen bg-slate-300">
       <div className="flex flex-col gap-10 justify-center h-screen py-20 w-1/2 items-center">
         <h1 className="text-5xl font-bold text-slate-600">To Do List</h1>
-        <button
-          className="text-4xl font-semibold text-slate-600 bg-slate-400 w-full p-4 rounded-2xl hover:bg-slate-500"
-          onClick={() => {
-            console.log("Hola papu");
-          }}
-        >
-          Add Task
-        </button>
+        <div className="flex w-full gap-3 items-center">
+          <button
+            className="text-2xl font-semibold text-slate-600 bg-slate-400 w-full p-4 rounded-2xl hover:bg-slate-500"
+            onClick={() => {
+              console.log(name, description);
+            }}
+          >
+            Add Task
+          </button>
+          <div className="flex flex-col gap-2 justify-center w-full">
+            <p className="text-xl font-semibold text-slate-600">Task Name</p>
+            <input
+              className="w-full outline-none border border-slate-500 rounded-2xl p-2 text-slate-500 font-semibold"
+              placeholder="Name..."
+              onChange={HandleNameDescription}
+            />
+          </div>
+          <div className="flex flex-col gap-2 justify-center w-full">
+            <p className="text-xl font-semibold text-slate-600">Description</p>
+            <input
+              className="w-full outline-none border border-slate-500 rounded-2xl p-2 text-slate-500 font-semibold"
+              placeholder="Description"
+              onChange={HandleChangeDescription}
+            />
+          </div>
+        </div>
         {loading && (
           <p className="text-6xl text-slate-600 font-bold">Loading...</p>
         )}
