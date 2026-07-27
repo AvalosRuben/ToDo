@@ -1,9 +1,9 @@
-import type { Tasks } from "./Task";
+import type { Tasks } from "./Tasks";
 
-function Task({ taskName, description }: Tasks) {
+function Task({ name, description }: Tasks) {
   return (
     <div className="w-full h-30 rounded-2xl border border-slate-500 bg-slate-400 p-4 flex flex-col gap-4 justify-center text-lg text-slate-200 font-bold">
-      <p>Task: {taskName}</p>
+      <p>Task: {name}</p>
       <p>Description: {description}</p>
     </div>
   );
