@@ -17,25 +17,24 @@ function App() {
     setName(e.target.value);
   };
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("http://localhost:8080/get-tasks");
+  const fetchTasks = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch("http://localhost:8080/get-tasks");
 
-        if (!response.ok) {
-          throw new Error(`Error ${response.status}: Failed to fetch tasks`);
-        }
-
-        const data: Tasks[] = await response.json();
-        setTasks(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-      } finally {
-        setLoading(false);
+      if (!response.ok) {
+        throw new Error(`Error ${response.status}: Failed to fetch tasks`);
       }
-    };
 
+      const data: Tasks[] = await response.json();
+      setTasks(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
     fetchTasks();
   }, []);
 
@@ -60,6 +59,8 @@ function App() {
 
       const newTask = await response.json();
       console.log("Created task: ", newTask);
+
+      await fetchTasks();
 
       setName("");
       setDescription("");
