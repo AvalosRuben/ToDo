@@ -31,6 +31,14 @@ function App() {
     <div className="flex items-center justify-center w-full min-h-screen bg-slate-300">
       <div className="flex flex-col gap-10 justify-center h-screen py-20 w-1/2 items-center">
         <h1 className="text-5xl font-bold text-slate-600">To Do List</h1>
+        <button
+          className="text-4xl font-semibold text-slate-600 bg-slate-400 w-full p-4 rounded-2xl hover:bg-slate-500"
+          onClick={() => {
+            console.log("Hola papu");
+          }}
+        >
+          Add Task
+        </button>
         {loading && (
           <p className="text-6xl text-slate-600 font-bold">Loading...</p>
         )}
