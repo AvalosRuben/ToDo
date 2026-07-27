@@ -1,10 +1,14 @@
+import Task from "./Task";
+
 function App() {
   return (
     <div className="flex items-center justify-center w-full min-h-screen bg-slate-300">
-      <div className="flex flex-col gap-10 justify-center h-screen py-20">
+      <div className="flex flex-col gap-10 justify-center h-screen py-20 w-1/2 items-center">
         <h1 className="text-5xl font-bold text-slate-600">To Do List</h1>
-        <div className="h-full w-full flex flex-col items-center text-slate-500">
-          Here will go the Tasks!
+        <div className="h-full w-full flex flex-col items-center gap-5">
+          <Task />
+          <Task />
+          <Task />
         </div>
       </div>
     </div>
